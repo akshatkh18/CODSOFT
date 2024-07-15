@@ -1,0 +1,177 @@
+# import random
+# # global rock,paper , scissor
+
+# #ASKING FOR NUMBER OF TURNS TO PLAY AND CHECKING IF THE NUMBER OF TURNS IS EVEN OR ODD
+# def ask_for_number_of_turns():
+#   global turn
+#   turn = int(input("How many turns(odd turns only) do you want to play?\n"))
+  
+#   if turn%2 == 0:
+#     print("Only odd turns allowed.Please enter an odd number of turns.")
+#     print("\n")
+#     ask_for_number_of_turns()
+#   else:
+#     print("OK. Let's start the game.")
+#     print("\n")
+#     game()
+    
+# # REAL GAME START'S HERE
+# def game():
+#   global computer_score 
+#   global player_score  
+#   computer_score = 0
+#   player_score = 0
+  
+#   for i in range(1,turn+1):
+#     print(f"TURN {i}:\n")
+#     User = input("Enter your choice: ").lower()
+#     computer = random.choice(["rock","paper","scissor"])
+#     print("Computer's choice: ",computer)
+
+#     # If user choose ROCK
+#     if User == "rock" :
+#       if computer == "paper":
+#         print("You lose!")
+#         computer_score+=1
+#         print(f"Computer's score: {computer_score}") #Increase computer's score by 1
+#         print("\n")
+#       elif computer == "scissor":
+#         print("You win!")
+#         player_score+=1
+#         print(f"Player's score: {player_score}") #Increase player's score by 1
+#         print("\n")
+#       elif User == computer:
+#         print("It's a tie!")
+#         print("\n")
+#       else:
+#         print("Invalid input. Please enter rock, paper, or scissor.")
+#         print("\n")
+        
+# # If user choose PAPER
+#     if User == "paper" :
+#         if computer == "scissor":
+#           print("You lose!")
+#           computer_score+=1
+#           print(f"Computer's score: {computer_score}") 
+#           print("\n")
+#         elif computer == "rock":
+#           print("You win!")
+#           player_score+=1
+#           print(f"Player's score: {player_score}")
+#           print("\n")    
+#         elif User == computer:
+#           print("It's a tie!")
+#           print("\n")
+          
+#         else:
+#           print("Invalid input. Please enter rock, paper, or scissor.")
+#           print("\n")
+
+# # If user choose SCISSOR
+#     if User == "scissor" :
+#         if computer == "paper":
+#           print("You win!")
+#           player_score+=1
+#           print(f"Player's score: {player_score}") 
+#           print("\n")
+#         elif computer == "rock":
+#           print("You lose!")
+#           computer_score+=1
+#           print(f"Computer's score: {computer_score}") 
+#           print("\n")
+#         elif User == computer:
+#           print("It's a tie!")
+#           print("\n")
+#         else:
+#           print("Invalid input. Please enter rock, paper, or scissor.")
+#           print("\n")
+
+#   print(f"Player's Score: {player_score}")
+#   print(f"Computer's Score: {computer_score}")
+#   print("\n")
+
+#   if player_score > computer_score:
+#     print("Result: You win the game!")
+#     print("Congratulations!")
+#   elif player_score == computer_score :
+#     print("Result: It's a tie!")
+#     print("Try again!")
+#   else:
+#     print("Result: You lose the game!")
+
+
+
+# ask_for_number_of_turns()
+
+# print("\n\n")
+# print("Thank you for playing!")
+# print("See you next time!")
+
+
+import random
+
+def ask_to_play_again():
+    while True:
+        choice = input("Do you want to play again? (yes/no): ").lower()
+        if choice in ["yes", "no"]:
+            return choice
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
+
+def game():
+    global computer_score 
+    global player_score
+    computer_score = 0
+    player_score = 0
+    play_again = "yes"
+
+    while play_again == "yes":
+        print(f"\nTURN {player_score + computer_score + 1}:\n")
+        while True:
+            user_choice = input("Enter your choice (rock, paper, or scissor): ").lower()
+            if user_choice in ["rock", "paper", "scissor"]:
+                break
+            else:
+                print("Invalid input. Please enter rock, paper, or scissor.")
+                print("\n")
+
+        computer_choice = random.choice(["rock", "paper", "scissor"])
+        print("Computer's choice:", computer_choice)
+
+        if user_choice == computer_choice:
+            print("It's a tie!")
+        elif (user_choice == "rock" and computer_choice == "scissor") or \
+             (user_choice == "paper" and computer_choice == "rock") or \
+             (user_choice == "scissor" and computer_choice == "paper"):
+            print("You win!")
+            player_score += 1
+        else:
+            print("You lose!")
+            computer_score += 1
+
+        print(f"Player's score: {player_score}")
+        print(f"Computer's score: {computer_score}")
+        print("\n")
+
+        play_again = ask_to_play_again()
+
+    # Display final scores and result
+    print(f"\nFinal Player's Score: {player_score}")
+    print(f"Final Computer's Score: {computer_score}")
+    print("\n")
+
+    if player_score > computer_score:
+        print("Result: You win the game!")
+        print("Congratulations!")
+    elif player_score == computer_score:
+        print("Result: It's a tie!")
+        print("Try again!")
+    else:
+        print("Result: You lose the game!")
+
+    print("\n\n")
+    print("Thank you for playing!")
+    print("See you next time!")
+
+# Start the game
+game()
